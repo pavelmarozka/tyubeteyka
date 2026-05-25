@@ -1,0 +1,317 @@
+/* 
+================================================================
+СТИЛИ ДЛЯ РЕСТОРАННОГО МЕНЮ (А3)
+Размер макета: 422×299 мм (без bleed)
+Технологии: CSS Grid, Flexbox
+Цвета: #000 (чёрный), #fff (белый) - для последующей конвертации в CMYK
+================================================================
+*/
+
+/* ---------------------------------------------------------------
+   СБРОС СТИЛЕЙ И БАЗОВЫЕ НАСТРОЙКИ
+--------------------------------------------------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'PT Serif', Georgia, serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000;
+    background-color: #fff;
+    /* Отключаем сглаживание шрифтов для чёткости при печати */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------------------------------------------------------------
+   ГЛАВНЫЙ КОНТЕЙНЕР СТРАНИЦЫ
+   Фиксированный размер 422×299 мм
+--------------------------------------------------------------- */
+.menu-page {
+    width: 422mm;
+    height: 299mm;
+    padding: 15mm; /* Внутренние отступы */
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+    /* Для корректного отображения в браузере */
+    margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------
+   РАЗРЫВ СТРАНИЦЫ (для двухсторонней печати)
+--------------------------------------------------------------- */
+.page-break {
+    page-break-after: always;
+    page-break-before: always;
+}
+
+/* ---------------------------------------------------------------
+   ЗАГОЛОВОК МЕНЮ
+--------------------------------------------------------------- */
+.menu-header {
+    text-align: center;
+    margin-bottom: 8mm;
+    padding-bottom: 6mm;
+    border-bottom: 2px solid #000;
+}
+
+.menu-title {
+    font-family: 'Roboto Slab', 'PT Serif', serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: 8px;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.menu-subtitle {
+    font-family: 'PT Serif', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* ---------------------------------------------------------------
+   РАЗДЕЛ МЕНЮ
+--------------------------------------------------------------- */
+.menu-section {
+    margin-bottom: 10mm;
+}
+
+.section-title {
+    font-family: 'Roboto Slab', 'PT Serif', serif;
+    font-size: 28px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 6mm;
+    padding-bottom: 2mm;
+    border-bottom: 1px solid #000;
+    text-align: center;
+}
+
+/* ---------------------------------------------------------------
+   СПИСОК БЛЮД
+   Используем Flexbox для вертикального списка
+--------------------------------------------------------------- */
+.menu-items-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4mm; /* Отступ между блюдами */
+}
+
+/* ---------------------------------------------------------------
+   ОТДЕЛЬНОЕ БЛЮДО
+   Используем Grid для колонок: название | объём | цена
+--------------------------------------------------------------- */
+.menu-item {
+    display: grid;
+    grid-template-columns: 1fr auto auto;
+    grid-gap: 10mm;
+    align-items: baseline;
+    padding: 2mm 0;
+}
+
+/* Название блюда */
+.item-name {
+    font-family: 'PT Serif', serif;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Объём/вес */
+.item-volume {
+    font-family: 'PT Serif', serif;
+    font-size: 13px;
+    font-weight: 400;
+    color: #000;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* Цена */
+.item-price {
+    font-family: 'Roboto Slab', 'PT Serif', serif;
+    font-size: 16px;
+    font-weight: 700;
+    min-width: 80px;
+    text-align: right;
+}
+
+/* ---------------------------------------------------------------
+   ТОЧКИ-ЗАПОЛНИТЕЛИ (опционально, для классического вида)
+   Раскомментируйте .item-dots и добавьте HTML для эффекта "......"
+--------------------------------------------------------------- */
+/*
+.item-dots {
+    flex: 1;
+    border-bottom: 1px dotted #000;
+    margin: 0 5mm;
+    position: relative;
+    top: -3px;
+}
+*/
+
+/* ---------------------------------------------------------------
+   ПРИМЕЧАНИЯ К РАЗДЕЛУ
+   Для рукописных дополнений и комментариев
+--------------------------------------------------------------- */
+.section-note {
+    margin-top: 4mm;
+    padding: 3mm;
+    font-size: 12px;
+    font-style: italic;
+    color: #000;
+    border-left: 2px solid #000;
+    padding-left: 4mm;
+}
+
+/* ---------------------------------------------------------------
+   ДЕКОРАТИВНЫЙ РАЗДЕЛИТЕЛЬ
+--------------------------------------------------------------- */
+.decorative-divider {
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 20%,
+        #000 80%,
+        transparent 100%
+    );
+    margin: 8mm 0;
+}
+
+/* ---------------------------------------------------------------
+   АЛЬТЕРНАТИВНАЯ ВЁРСТКА: ДВЕ КОЛОНКИ
+   Используйте класс .two-columns для раздела с большим количеством блюд
+--------------------------------------------------------------- */
+.two-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 15mm;
+}
+
+.two-columns .menu-items-list {
+    gap: 3mm;
+}
+
+/* ---------------------------------------------------------------
+   АДАПТАЦИЯ ДЛЯ ПРОСМОТРА В БРАУЗЕРЕ
+   Масштабирование для экранов меньше 422мм
+--------------------------------------------------------------- */
+@media screen and (max-width: 450mm) {
+    body {
+        background-color: #f5f5f5;
+        padding: 20px;
+    }
+    
+    .menu-page {
+        transform-origin: top center;
+        /* Автомасштабирование для просмотра */
+        transform: scale(0.5);
+        margin-bottom: -149.5mm; /* Компенсация после scale */
+    }
+}
+
+/* ---------------------------------------------------------------
+   СТИЛИ ДЛЯ ПЕЧАТИ
+--------------------------------------------------------------- */
+@media print {
+    body {
+        background-color: #fff;
+        padding: 0;
+    }
+    
+    .menu-page {
+        margin: 0;
+        padding: 15mm;
+        width: 422mm;
+        height: 299mm;
+        transform: none !important;
+        page-break-after: always;
+    }
+    
+    /* Скрываем элементы, не нужные при печати */
+    .no-print {
+        display: none !important;
+    }
+    
+    /* Гарантируем печать фонов */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
+
+/* ---------------------------------------------------------------
+   ВАРИАНТЫ ОФОРМЛЕНИЯ БЛЮД
+--------------------------------------------------------------- */
+
+/* С рамкой вокруг названия */
+.menu-item.framed .item-name {
+    border: 1px solid #000;
+    padding: 2mm 4mm;
+    display: inline-block;
+}
+
+/* С акцентом на цену */
+.menu-item.highlighted .item-price {
+    background-color: #000;
+    color: #fff;
+    padding: 2mm 4mm;
+}
+
+/* Курсив для особых блюд */
+.menu-item.italic .item-name {
+    font-style: italic;
+    font-weight: 400;
+}
+
+/* ---------------------------------------------------------------
+   ДОПОЛНИТЕЛЬНЫЕ ЭЛЕМЕНТЫ (опционально)
+--------------------------------------------------------------- */
+
+/* Иконка нового блюда */
+.item-new::before {
+    content: "NEW";
+    font-size: 10px;
+    font-weight: 700;
+    margin-right: 4px;
+    padding: 1px 4px;
+    border: 1px solid #000;
+}
+
+/* Иконка хита */
+.item-hit::after {
+    content: "★";
+    font-size: 14px;
+    margin-left: 4px;
+}
+
+/* ---------------------------------------------------------------
+   ПРИМЕРЫ ИСПОЛЬЗОВАНИЯ:
+   
+   1. Обычное блюдо:
+      <li class="menu-item">...</li>
+   
+   2. Блюдо с рамкой:
+      <li class="menu-item framed">...</li>
+   
+   3. Хит продаж:
+      <li class="menu-item item-hit">...</li>
+   
+   4. Новинка:
+      <li class="menu-item item-new">...</li>
+   
+   5. Две колонки для раздела:
+      <section class="menu-section two-columns">...</section>
+   
+=============================================================== */

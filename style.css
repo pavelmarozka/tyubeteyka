@@ -34,7 +34,7 @@ body {
 .menu-page {
     width: 422mm;
     height: 299mm;
-    padding: 15mm; /* Внутренние отступы */
+    padding: 5mm; /* Внутренние отступы */
     background-color: #fff;
     position: relative;
     overflow: hidden;
@@ -54,43 +54,24 @@ body {
    ЗАГОЛОВОК МЕНЮ
 --------------------------------------------------------------- */
 .menu-header {
-    text-align: center;
-    margin-bottom: 8mm;
-    padding-bottom: 6mm;
-    border-bottom: 2px solid #000;
-}
-
-.menu-title {
-    font-family: 'Roboto Slab', 'PT Serif', serif;
-    font-size: 48px;
-    font-weight: 700;
-    letter-spacing: 8px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-}
-
-.menu-subtitle {
-    font-family: 'PT Serif', serif;
-    font-size: 18px;
-    font-style: italic;
-    font-weight: 400;
+    display: none; /* Скрыто для последующего добавления логотипа */
 }
 
 /* ---------------------------------------------------------------
    РАЗДЕЛ МЕНЮ
 --------------------------------------------------------------- */
 .menu-section {
-    margin-bottom: 10mm;
+    margin-bottom: 6mm;
 }
 
 .section-title {
     font-family: 'Roboto Slab', 'PT Serif', serif;
-    font-size: 28px;
+    font-size: 20px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    margin-bottom: 6mm;
-    padding-bottom: 2mm;
+    letter-spacing: 2px;
+    margin-bottom: 3mm;
+    padding-bottom: 1mm;
     border-bottom: 1px solid #000;
     text-align: center;
 }
@@ -103,7 +84,7 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 4mm; /* Отступ между блюдами */
+    gap: 1.5mm; /* Уменьшенный отступ между блюдами */
 }
 
 /* ---------------------------------------------------------------
@@ -113,36 +94,36 @@ body {
 .menu-item {
     display: grid;
     grid-template-columns: 1fr auto auto;
-    grid-gap: 10mm;
+    grid-gap: 5mm; /* Уменьшенный отступ между колонками */
     align-items: baseline;
-    padding: 2mm 0;
+    padding: 1mm 0; /* Уменьшенный padding */
 }
 
 /* Название блюда */
 .item-name {
     font-family: 'PT Serif', serif;
-    font-size: 16px;
+    font-size: 13px; /* Уменьшенный шрифт */
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 /* Объём/вес */
 .item-volume {
     font-family: 'PT Serif', serif;
-    font-size: 13px;
+    font-size: 11px; /* Уменьшенный шрифт */
     font-weight: 400;
     color: #000;
-    min-width: 80px;
+    min-width: 60px;
     text-align: right;
 }
 
 /* Цена */
 .item-price {
     font-family: 'Roboto Slab', 'PT Serif', serif;
-    font-size: 16px;
+    font-size: 13px; /* Уменьшенный шрифт */
     font-weight: 700;
-    min-width: 80px;
+    min-width: 60px;
     text-align: right;
 }
 
@@ -165,13 +146,13 @@ body {
    Для рукописных дополнений и комментариев
 --------------------------------------------------------------- */
 .section-note {
-    margin-top: 4mm;
-    padding: 3mm;
-    font-size: 12px;
+    margin-top: 2mm;
+    padding: 2mm;
+    font-size: 10px; /* Уменьшенный шрифт */
     font-style: italic;
     color: #000;
-    border-left: 2px solid #000;
-    padding-left: 4mm;
+    border-left: 1px solid #000;
+    padding-left: 3mm;
 }
 
 /* ---------------------------------------------------------------
@@ -196,7 +177,7 @@ body {
 .three-column-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 10mm;
+    grid-gap: 6mm; /* Уменьшенный отступ между колонками */
     align-items: start;
 }
 
@@ -250,7 +231,7 @@ body {
     
     .menu-page {
         margin: 0;
-        padding: 15mm;
+        padding: 5mm; /* Внутренние отступы для печати */
         width: 422mm;
         height: 299mm;
         transform: none !important;

@@ -190,17 +190,35 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   АЛЬТЕРНАТИВНАЯ ВЁРСТКА: ДВЕ КОЛОНКИ
-   Используйте класс .two-columns для раздела с большим количеством блюд
+   ТРЁХКОЛОНОЧНАЯ СЕТКА ДЛЯ РАЗМЕЩЕНИЯ СЕКЦИЙ
+   Используем CSS Grid для трёх колонок
 --------------------------------------------------------------- */
-.two-columns {
+.three-column-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 15mm;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10mm;
+    align-items: start;
 }
 
-.two-columns .menu-items-list {
-    gap: 3mm;
+/* Адаптация сетки для разных размеров экрана */
+@media screen and (max-width: 300mm) {
+    .three-column-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 200mm) {
+    .three-column-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Сообщение о загрузке */
+.loading-message {
+    text-align: center;
+    font-size: 18px;
+    color: #666;
+    grid-column: 1 / -1;
 }
 
 /* ---------------------------------------------------------------

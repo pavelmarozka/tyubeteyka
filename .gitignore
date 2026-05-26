@@ -1,43 +1,4 @@
-```gitignore
-# Compiled and build artifacts
-*.pyc
-__pycache__/
-*.o
-*.obj
-*.class
-*.exe
-*.dll
-*.so
-*.a
-*.out
-
-# Dependencies
+menu-page*.pdf
+menu-page*.png
 node_modules/
-venv/
-.venv/
-.env
-.env.local
-.env.*
 
-# Build directories
-dist/
-build/
-target/
-*.log
-*.tmp
-*.swp
-
-# Editors
-.vscode/
-.idea/
-
-# System files
-.DS_Store
-Thumbs.db
-```
-
-Wait, I need to reconsider. The only modified files are `index.html` and `style.css`, which are source code files. There are no build artifacts, dependency directories, or temporary files in the change list. According to rule 6, if the change list contains only source or config files and no build artifacts, dependencies, or temp files, I should output an empty .gitignore.
-
-```gitignore
-
-```

@@ -1,0 +1,24 @@
+{
+  "name": "tyubeteyka",
+  "version": "1.0.0",
+  "description": "Этот проект представляет собой веб-версию ресторанного меню, оптимизированную для печати на бумаге формата А3 (420×297 мм) с безопасной зоной **422×299 мм**. Проект создан с использованием современных веб-технологий и подготовлен для экспорта в высококачественные PDF/PNG/JPG/TIFF файлы с разрешением **300 dpi**.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavelmarozka/tyubeteyka.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/pavelmarozka/tyubeteyka/issues"
+  },
+  "homepage": "https://github.com/pavelmarozka/tyubeteyka#readme",
+  "dependencies": {
+    "playwright": "^1.60.0"
+  }
+}

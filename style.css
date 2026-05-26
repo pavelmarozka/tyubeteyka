@@ -25,7 +25,11 @@ body {
     /* Отключаем сглаживание шрифтов для чёткости при печати */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: grid;
+    gap: 3mm;
 }
+
+
 
 /* ---------------------------------------------------------------
    ГЛАВНЫЙ КОНТЕЙНЕР СТРАНИЦЫ
@@ -43,6 +47,38 @@ body {
 }
 
 /* ---------------------------------------------------------------
+   НАПРАВЛЯЮЩИЕ (только для экрана, не печатаются)
+--------------------------------------------------------------- */
+.guide {
+    position: absolute;
+    pointer-events: none;
+}
+
+.guide-outer {
+    top: 0;
+    left: 0;
+    width: 422mm;
+    height: 299mm;
+    border: 0.5px solid #000;
+}
+
+.guide-trim {
+    top: 1mm;
+    left: 1mm;
+    width: 420mm;
+    height: 297mm;
+    border: 0.5px dashed #999;
+}
+
+.guide-safe {
+    top: 4mm;
+    left: 4mm;
+    width: 414mm;
+    height: 291mm;
+    border: 0.3px solid #ccc;
+}
+
+/* ---------------------------------------------------------------
    РАЗРЫВ СТРАНИЦЫ (для двухсторонней печати)
 --------------------------------------------------------------- */
 .page-break {
@@ -51,10 +87,29 @@ body {
 }
 
 /* ---------------------------------------------------------------
-   ЗАГОЛОВОК МЕНЮ
+   ЛОГОТИП
 --------------------------------------------------------------- */
-.menu-header {
-    display: none; /* Скрыто для последующего добавления логотипа */
+.logo-container {
+    text-align: center;
+    margin-bottom: 4mm;
+    padding: 2mm 0;
+}
+
+.logo-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.logo-container .logo-placeholder {
+    display: inline-block;
+    padding: 3mm 6mm;
+    border: 1px dashed #000;
+    font-family: 'Roboto Slab', serif;
+    font-size: 10px;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 /* ---------------------------------------------------------------
@@ -76,6 +131,11 @@ body {
     text-align: center;
 }
 
+.section-title i {
+    margin-right: 3mm;
+    font-size: 18px;
+}
+
 /* ---------------------------------------------------------------
    СПИСОК БЛЮД
    Используем Flexbox для вертикального списка
@@ -84,7 +144,7 @@ body {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 1.5mm; /* Уменьшенный отступ между блюдами */
+    gap: .5mm; /* Уменьшенный отступ между блюдами */
 }
 
 /* ---------------------------------------------------------------
@@ -94,7 +154,7 @@ body {
 .menu-item {
     display: grid;
     grid-template-columns: 1fr auto auto;
-    grid-gap: 5mm; /* Уменьшенный отступ между колонками */
+    grid-gap: 1mm; /* Уменьшенный отступ между колонками */
     align-items: baseline;
     padding: 1mm 0; /* Уменьшенный padding */
 }
@@ -142,6 +202,19 @@ body {
 */
 
 /* ---------------------------------------------------------------
+   ПРИМЕЧАНИЕ К ПОЗИЦИИ
+--------------------------------------------------------------- */
+.item-note {
+    grid-column: 1 / -1;
+    font-family: 'PT Serif', serif;
+    font-size: 12px;
+    font-style: italic;
+    color: #000;
+    margin-top: -1mm;
+    padding-left: 1mm;
+}
+
+/* ---------------------------------------------------------------
    ПРИМЕЧАНИЯ К РАЗДЕЛУ
    Для рукописных дополнений и комментариев
 --------------------------------------------------------------- */
@@ -177,8 +250,14 @@ body {
 .three-column-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 6mm; /* Уменьшенный отступ между колонками */
+    grid-gap: 6mm;
     align-items: start;
+}
+
+.menu-col {
+    display: flex;
+    flex-direction: column;
+    gap: 4mm;
 }
 
 /* Адаптация сетки для разных размеров экрана */
@@ -240,6 +319,10 @@ body {
     
     /* Скрываем элементы, не нужные при печати */
     .no-print {
+        display: none !important;
+    }
+    
+    .guide {
         display: none !important;
     }
     

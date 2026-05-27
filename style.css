@@ -91,7 +91,7 @@ body {
 --------------------------------------------------------------- */
 .logo-container {
     text-align: center;
-    margin-bottom: 4mm;
+    margin-bottom: 0mm;
     padding: 2mm 0;
 }
 
@@ -116,7 +116,7 @@ body {
    РАЗДЕЛ МЕНЮ
 --------------------------------------------------------------- */
 .menu-section {
-    margin-bottom: 6mm;
+    margin-bottom: 3mm;
 }
 
 .section-title {
@@ -154,9 +154,14 @@ body {
 .menu-item {
     display: grid;
     grid-template-columns: 1fr auto auto;
-    grid-gap: 1mm; /* Уменьшенный отступ между колонками */
+    grid-gap: 1mm;
     align-items: baseline;
-    padding: 1mm 0; /* Уменьшенный padding */
+    padding: 1mm 2mm;
+    border-radius: 2mm;
+}
+
+.menu-item:nth-child(even) {
+    background: rgb(218 93 20 / 10%);
 }
 
 /* Название блюда */
@@ -221,7 +226,7 @@ body {
 .section-note {
     margin-top: 2mm;
     padding: 2mm;
-    font-size: 10px; /* Уменьшенный шрифт */
+    font-size: 20px; /* Уменьшенный шрифт */
     font-style: italic;
     color: #000;
     border-left: 1px solid #000;
@@ -244,6 +249,22 @@ body {
 }
 
 /* ---------------------------------------------------------------
+   ИЗОБРАЖЕНИЯ В КОЛОНКАХ
+--------------------------------------------------------------- */
+.col-image-container {
+    text-align: center;
+    margin-bottom: 4mm;
+    padding: 2mm 0;
+}
+
+.col-image-container img {
+    max-width: 80%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* ---------------------------------------------------------------
    ТРЁХКОЛОНОЧНАЯ СЕТКА ДЛЯ РАЗМЕЩЕНИЯ СЕКЦИЙ
    Используем CSS Grid для трёх колонок
 --------------------------------------------------------------- */
@@ -257,7 +278,7 @@ body {
 .menu-col {
     display: flex;
     flex-direction: column;
-    gap: 4mm;
+    gap: 0mm;
 }
 
 /* Адаптация сетки для разных размеров экрана */
@@ -397,3 +418,9 @@ body {
       <section class="menu-section two-columns">...</section>
    
 =============================================================== */
+
+.col-image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}

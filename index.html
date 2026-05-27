@@ -64,7 +64,21 @@
         
         <!-- Контейнер для остальных секций -->
         <div class="three-column-grid" id="menu-content-page2">
-            <!-- Секции меню будут вставлены здесь через JS -->
+            <div class="menu-col" id="col1-page2">
+                <div class="logo-container" id="logo-page2">
+                    <img src="logo.png" alt="Логотип">
+                </div>
+            </div>
+            <div class="menu-col" id="col2-page2">
+                <div class="col-image-container">
+                    <img src="coffee.png" alt="Кофе">
+                </div>
+            </div>
+            <div class="menu-col" id="col3-page2">
+                <div class="col-image-container">
+                    <img src="limunade.png" alt="Лимонад">
+                </div>
+            </div>
         </div>
 
     </div>
@@ -83,11 +97,12 @@
             'Чебуреки': 'fa-wheat-awn',
             'Гарниры': 'fa-carrot',
             'Фреши': 'fa-lemon',
-            'Милкшейки': 'fa-blender',
+            'Лимонады': 'fa-blender',
             'Смузи': 'fa-apple-whole',
             'Соусы': 'fa-droplet',
             'Хлеб': 'fa-bread-slice',
-            'Блюда на мангале / Шашлык': 'fa-fire'
+            'Блюда на мангале': 'fa-fire',
+            'Чай': 'fa-mug-saucer'
         };
 
         // НАСТРОЙКИ: расположение категорий на первой странице
@@ -95,9 +110,19 @@
         // Колонка 2: категории сверху
         // Колонка 3: категории сверху
         const PAGE1_LAYOUT = [
-            { col: 1, categories: ['Первые блюда', 'Хлеб'] },
+            { col: 1, categories: ['Первые блюда', 'Чебуреки', 'Хлеб'] },
             { col: 2, categories: ['Завтрак', 'Гарниры', 'Восточная кухня', 'Соусы'] },
-            { col: 3, categories: ['Салаты', 'Блюда на мангале / Шашлык', 'Чебуреки', 'Десерты'] }
+            { col: 3, categories: ['Салаты', 'Блюда на мангале'] }
+        ];
+
+        // НАСТРОЙКИ: расположение категорий на второй странице
+        // Колонка 1: логотип (уже в HTML) + категории под ним
+        // Колонка 2: категории сверху
+        // Колонка 3: категории сверху
+        const PAGE2_LAYOUT = [
+            { col: 1, categories: ['Лимонады', 'Смузи', 'Фреши'] },
+            { col: 2, categories: ['Кофе', 'Безалкогольные напитки'] },
+            { col: 3, categories: ['Чай', 'Десерты'] }
         ];
 
         // Рендер одной категории в HTML
@@ -111,22 +136,29 @@
             `;
             
             category.меню.forEach(item => {
-                const priceDisplay = item.цена != null ? `${item.цена} р` : '—';
+                const priceDisplay = item.цена != null ? `${item.цена} ₽` : '—';
                 const volumeDisplay = item.объём || '';
                 const noteHtml = item.примечание ? `<span class="item-note">${escapeHtml(item.примечание)}</span>` : '';
                 
                 html += `
-                            <li class="menu-item">
-                                <span class="item-name">${escapeHtml(item.наименование)}</span>
-                                <span class="item-volume">${escapeHtml(volumeDisplay)}</span>
-                                <span class="item-price">${priceDisplay}</span>
-                                ${noteHtml}
-                            </li>
+                        <li class="menu-item">
+                            <span class="item-name">${escapeHtml(item.наименование)}</span>
+                            <span class="item-volume">${escapeHtml(volumeDisplay)}</span>
+                            <span class="item-price">${priceDisplay}</span>
+                            ${noteHtml}
+                        </li>
                 `;
             });
             
             html += `
                         </ul>
+            `;
+
+            if (category.примечание) {
+                html += `<p class="section-note">${escapeHtml(category.примечание)}</p>`;
+            }
+
+            html += `
                     </article>
             `;
             
@@ -168,9 +200,17 @@
                 container.insertAdjacentHTML('beforeend', html);
             });
             
-            // Вторая страница — все оставшиеся категории
-            const remaining = menuData.filter(cat => !usedCategories.has(cat.категория));
-            renderMenuPage('menu-content-page2', remaining);
+            // Вторая страница — ручная раскладка по колонкам
+            PAGE2_LAYOUT.forEach(({ col, categories }) => {
+                const container = document.getElementById(`col${col}-page2`);
+                let html = '';
+                categories.forEach(catName => {
+                    const cat = categoryMap[catName];
+                    if (!cat || !cat.меню || cat.меню.length === 0) return;
+                    html += renderCategory(cat);
+                });
+                container.insertAdjacentHTML('beforeend', html);
+            });
         }
 
         // Рендеринг секций меню в контейнер
